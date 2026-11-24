@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f3ee">
+  <title>송희석 | 나를 소개합니다</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f3ee;
+      --card: #fffefa;
+      --ink: #202b28;
+      --muted: #75807a;
+      --line: #e7e5dc;
+      --green: #245c49;
+      --green-soft: #e9f0e9;
+      --orange: #e47b4d;
+      --shadow: 0 24px 70px rgba(32, 43, 40, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      padding: 48px 24px;
+      background:
+        radial-gradient(ellipse at 12% 10%, rgba(226, 232, 214, 0.65), transparent 34%),
+        var(--paper);
+      color: var(--ink);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+    }
+
+    .topbar-label {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .topbar-label::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      content: "";
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      border-color: var(--green);
+    }
+
+    .profile {
+      overflow: hidden;
+      border: 1px solid rgba(32, 43, 40, 0.05);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 230px;
+      align-items: center;
+      gap: 48px;
+      min-height: 340px;
+      padding: 62px 72px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.5), transparent 28%),
+        var(--green-soft);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 68px);
+      letter-spacing: -0.07em;
+      line-height: 1.12;
+    }
+
+    .major {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .hero-note {
+      max-width: 440px;
+      margin: 28px 0 0;
+      color: #53635b;
+      font-size: 15px;
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    .portrait {
+      position: relative;
+      display: grid;
+      width: 196px;
+      height: 196px;
+      place-items: center;
+      justify-self: center;
+      border: 1px solid rgba(36, 92, 73, 0.14);
+      border-radius: 50%;
+      background: #d7e5d7;
+      color: var(--green);
+      font-size: 78px;
+      font-weight: 800;
+      letter-spacing: -0.12em;
+      text-indent: -0.12em;
+    }
+
+    .portrait::after {
+      position: absolute;
+      right: -5px;
+      bottom: 14px;
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 5px solid var(--green-soft);
+      border-radius: 50%;
+      background: var(--orange);
+      content: "안녕!";
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-indent: 0;
+    }
+
+    .content {
+      padding: 46px 72px 54px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin: 0 0 20px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .interests {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .interest {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 104px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      background: var(--card);
+    }
+
+    .interest-icon {
+      display: grid;
+      flex: 0 0 52px;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--green-soft);
+      font-size: 24px;
+    }
+
+    .interest h3 {
+      margin: 0 0 5px;
+      font-size: 16px;
+    }
+
+    .interest p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .detail {
+      min-height: 132px;
+      border-radius: 18px;
+      padding: 22px 24px;
+      background: #f7f5ef;
+    }
+
+    .detail-label {
+      margin: 0 0 13px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .detail-value {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .detail-value span {
+      margin-right: 7px;
+    }
+
+    .hello-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .hello-message {
+      min-height: 24px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hello-button {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 19px;
+      background: var(--green);
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 160ms ease, background-color 160ms ease;
+    }
+
+    .hello-button:hover {
+      transform: translateY(-2px);
+      background: #194733;
+    }
+
+    footer {
+      padding-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    body.dark {
+      color-scheme: dark;
+      --paper: #17211d;
+      --card: #202d27;
+      --ink: #edf2eb;
+      --muted: #a4b1a8;
+      --line: #35443c;
+      --green: #86c3a2;
+      --green-soft: #2b4035;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+      background:
+        radial-gradient(ellipse at 12% 10%, rgba(44, 75, 58, 0.48), transparent 34%),
+        var(--paper);
+    }
+
+    body.dark .hero-note {
+      color: #c1cec4;
+    }
+
+    body.dark .portrait {
+      background: #385344;
+      color: #d7f0df;
+    }
+
+    body.dark .detail {
+      background: #28362f;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 42px 28px 34px;
+        text-align: center;
+      }
+
+      .hero-note {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .portrait {
+        grid-row: 1;
+        width: 148px;
+        height: 148px;
+        font-size: 60px;
+      }
+
+      .portrait::after {
+        width: 48px;
+        height: 48px;
+      }
+
+      .content {
+        padding: 34px 26px 36px;
+      }
+
+      .interests {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .topbar {
+        font-size: 11px;
+      }
+
+      .theme-toggle {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+
+      .bottom-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hello-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <span class="topbar-label">A LITTLE ABOUT ME</span>
+      <button class="theme-toggle" type="button" aria-pressed="false">☾ 어두운 테마</button>
+    </div>
+
+    <article class="profile">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">HELLO, NICE TO MEET YOU</p>
+          <h1>송희석</h1>
+          <p class="major">경영정보학과</p>
+          <p class="hero-note">새로운 기술과 데이터에서 가능성을 찾고, 좋아하는 음악과 맛있는 음식으로 일상의 균형을 채워가고 있어요.</p>
+        </div>
+        <div class="portrait" aria-label="송희석의 프로필 이니셜">희석</div>
+      </header>
+
+      <div class="content">
+        <section aria-labelledby="interests-title">
+          <div class="section-heading">
+            <h2 id="interests-title">요즘 관심 있는 것</h2>
+            <span>MY INTERESTS</span>
+          </div>
+          <div class="interests">
+            <article class="interest">
+              <span class="interest-icon" aria-hidden="true">✦</span>
+              <div>
+                <h3>인공지능</h3>
+                <p>새로운 가능성을 만드는 기술</p>
+              </div>
+            </article>
+            <article class="interest">
+              <span class="interest-icon" aria-hidden="true">▥</span>
+              <div>
+                <h3>빅데이터</h3>
+                <p>데이터 속 의미와 인사이트</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="bottom-row">
+          <section class="detail" aria-label="좋아하는 음식">
+            <p class="detail-label">FAVORITE FOOD</p>
+            <p class="detail-value"><span aria-hidden="true">🍝</span>이탈리안 음식</p>
+          </section>
+          <section class="detail" aria-label="취미">
+            <p class="detail-label">MY HOBBIES</p>
+            <p class="detail-value"><span aria-hidden="true">🎼</span>클래식 기타 · 클라리넷</p>
+          </section>
+        </div>
+
+        <div class="hello-row">
+          <p class="hello-message" aria-live="polite">반가워요! 아래 버튼을 눌러 인사를 나눠요.</p>
+          <button class="hello-button" type="button">희석에게 인사하기 <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </article>
+
+    <footer>송희석의 작은 소개 페이지 · 반가워요!</footer>
+  </main>
+
+  <script>
+    const themeButton = document.querySelector(".theme-toggle");
+    const helloButton = document.querySelector(".hello-button");
+    const helloMessage = document.querySelector(".hello-message");
+
+    themeButton.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark");
+      themeButton.setAttribute("aria-pressed", String(isDark));
+      themeButton.textContent = isDark ? "☀ 밝은 테마" : "☾ 어두운 테마";
+    });
+
+    helloButton.addEventListener("click", () => {
+      helloMessage.textContent = "인사해줘서 고마워요. 오늘도 좋은 하루 보내세요! 😊";
+    });
+  </script>
+</body>
+</html>
